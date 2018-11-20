@@ -1,6 +1,6 @@
 ```
 npm i
-webpack-cli
+webpack
 #or
 npx webpack 
 ```
