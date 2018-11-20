@@ -1,7 +1,7 @@
 {
   "name": "imba-todo",
   "version": "1.1.0",
-  "description": "first version taken from from the tutorial",
+  "description": "first version was taken from from the tutorial",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
