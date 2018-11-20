@@ -1,8 +1,4 @@
-
 module.exports = {
-  entry: {
-    app: './index.imba',
-  },
   resolve: {
     extensions: ['.imba']
   },
