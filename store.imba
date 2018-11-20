@@ -8,4 +8,3 @@ export class Todo
 		@title = title
 		@done = no
 		@editing = no
-		@newTitle = ''
