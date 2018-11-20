@@ -11,7 +11,6 @@ export tag Todo
 
     def setTitle
         @todo.title = @newTitle
-        @newTitle = @todo.title
         @editing = no
 
     def render
