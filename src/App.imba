@@ -68,7 +68,14 @@ tag App
                 <button type='submit'> 'Add item'
 
             <div> for todo in items
+                # todo with custum events remove and renamed
                 <Todo todo=todo :remove.removeTodo(todo) :renamed.persist>
+                ###
+                    you also can pass function like a property
+                    func=(self:parentFuncName.bind(this))
+                    and then call it in child
+                    <Todo todo=todo :remove.removeTodo(todo) :renamed.persist>
+                ###
 
             <footer.footer>
                 <span.todo-count>
