@@ -1,7 +1,8 @@
 ```
 npm i
 webpack
-#or
+# or
 npx webpack 
+# or
+npm run build
 ```
-

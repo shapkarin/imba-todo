@@ -4,7 +4,10 @@
   "description": "imba todo app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx webpack"
+  },
+  "engines": {
+    "npm": "^5.2.0"
   },
   "author": "Yury Shapkarin",
   "license": "MIT",
@@ -14,3 +17,4 @@
     "webpack-cli": "^3.1.2"
   }
 }
+
