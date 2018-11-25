@@ -19,6 +19,6 @@ tag App
                 <input[@newTodoTitle] placeholder="Add...">
                 <button type='submit'> 'Add item'
             <div> for todo in @todos
-                <Todo todo=todo remove=self:removeTodo.bind(self)>
+                <Todo todo=todo :remove.removeTodo(todo)>
 
 Imba.mount <App todos=[]>

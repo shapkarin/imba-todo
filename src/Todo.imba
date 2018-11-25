@@ -17,7 +17,6 @@ export tag Todo
     # def remove todo
     #     up('_App').removeTodo(todo)
 
-
     def render
         <self>
             if @editing
@@ -28,4 +27,4 @@ export tag Todo
                 <button :tap.editing> 'Rename'
             else
                 <button :tap.setTitle> 'Save'
-            <button :click=(do @remove(todo))> 'Remove'
+            <button :tap.trigger('remove')> 'Remove'
