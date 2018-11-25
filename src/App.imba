@@ -22,6 +22,11 @@ tag App
         @todos = @todos.filter(|t| t != todo)
         persist
 
+    def toggleAll e
+        for todo in @todos
+            todo.completed = e.target.checked
+        persist
+
     # get completed todos
     def completed
         @todos.filter(|todo| todo.completed )
@@ -67,6 +72,7 @@ tag App
                 <input[@newTodoTitle] placeholder="Add...">
                 <button type='submit'> 'Add item'
 
+            <input.toggle-all type='checkbox' :change.toggleAll checked=(active.len == 0)>
             <div> for todo in items
                 # todo with custum events remove and renamed
                 <Todo todo=todo :remove.removeTodo(todo) :changed.persist>

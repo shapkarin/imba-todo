@@ -1,6 +1,5 @@
 export tag Todo
     prop todo
-    prop remove
 
     def toggleTodo
         @todo.completed = !@todo.completed
