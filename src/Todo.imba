@@ -6,13 +6,13 @@ export tag Todo
         @todo.completed = !@todo.completed
 
     def editing
-        # hm...
         @newTitle = @todo.title
         @editing = yes
 
     def setTitle
         @todo.title = @newTitle
         @editing = no
+        trigger('renamed')
 
     def render
         <self>
