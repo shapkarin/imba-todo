@@ -1,7 +1,7 @@
 export class Model
     prop title
-    prop done
+    prop completed
 
     def initialize title
         @title = title
-        @done = no
+        @completed = no

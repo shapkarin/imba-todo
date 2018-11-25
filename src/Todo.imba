@@ -3,7 +3,7 @@ export tag Todo
     prop remove
 
     def toggleTodo
-        @todo.done = !@todo.done
+        @todo.completed = !@todo.completed
 
     def editing
         # hm...
@@ -18,8 +18,8 @@ export tag Todo
         <self>
             if @editing
                 <input[@newTitle] :keydown.enter.setTitle>
-            <span .done=(@todo.done)> @todo.title
-            <button :tap.toggleTodo> !@todo.done ? 'Done' : 'ToDo'
+            <span .done=(@todo.completed)> @todo.title
+            <button :tap.toggleTodo> !@todo.completed ? 'Completed' : 'ToDo'
             if !@editing
                 <button :tap.editing> 'Rename'
             else
