@@ -19,6 +19,9 @@ tag App
     def remaining
         @todos.filter(|todo| !todo.completed )
 
+    def archive
+        @todos = remaining
+
     def hash
         window:location:hash
 
@@ -50,8 +53,8 @@ tag App
                     <li> <a .selected=(items is active) href='#/active'> 'Active'
                     <li> <a .selected=(items is done) href='#/completed'> 'Completed'
 
-                if done:len > 0
-                    <button.clear-completed :tap='archive'> 'Clear completed'
+                if done.len > 0
+                    <button.clear-completed :tap.archive> 'Clear completed'
 
     
 Imba.mount <App todos=[]>
