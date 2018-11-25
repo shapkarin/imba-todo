@@ -6,7 +6,6 @@ export tag Todo
         @todo.completed = !@todo.completed
 
     def editing
-        # hm...
         @newTitle = @todo.title
         @editing = yes
 
