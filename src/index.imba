@@ -10,12 +10,15 @@ tag App
         @todos.push Model.new(@newTodoTitle)
         @newTodoTitle = ''
 
+    def removeTodo todo
+        @todos = @todos.filter(|t| t != todo)
+
     def render
         <self>
             <form.header :submit.prevent.addTodo>
                 <input[@newTodoTitle] placeholder="Add...">
                 <button type='submit'> 'Add item'
             <div> for todo in @todos
-                <Todo todo=todo>
+                <Todo todo=todo remove=self:removeTodo.bind(self)>
 
 Imba.mount <App todos=[]>
