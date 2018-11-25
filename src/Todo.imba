@@ -1,5 +1,6 @@
 export tag Todo
     prop todo
+    prop remove
 
     def toggleTodo
         @todo.done = !@todo.done
@@ -12,6 +13,10 @@ export tag Todo
     def setTitle
         @todo.title = @newTitle
         @editing = no
+    
+    # def remove todo
+    #     up('_App').removeTodo(todo)
+
 
     def render
         <self>
@@ -23,3 +28,4 @@ export tag Todo
                 <button :tap.editing> 'Rename'
             else
                 <button :tap.setTitle> 'Save'
+            <button :click=(do @remove(todo))> 'Remove'
