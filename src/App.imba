@@ -6,7 +6,6 @@ tag App
     prop newTodoTitle
         
     def build
-        console.log 'TODO: load from localStorage'
         load
 
     # add todo
@@ -15,6 +14,7 @@ tag App
             return
         @todos.push Model.new(@newTodoTitle)
         @newTodoTitle = ''
+        console.log @todos
         persist
 
     # remove todo
@@ -68,7 +68,7 @@ tag App
                 <button type='submit'> 'Add item'
 
             <div> for todo in items
-                <Todo todo=todo :remove.removeTodo(todo)>
+                <Todo todo=todo :remove.removeTodo(todo) :renamed.persist>
 
             <footer.footer>
                 <span.todo-count>
@@ -84,4 +84,4 @@ tag App
                     <button.clear-completed :tap.archive> 'Clear completed'
 
     
-Imba.mount <App todos=[]>
+Imba.mount <App>

@@ -12,6 +12,7 @@ export tag Todo
     def setTitle
         @todo.title = @newTitle
         @editing = no
+        trigger('renamed')
 
     def render
         <self>
