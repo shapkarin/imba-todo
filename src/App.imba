@@ -14,7 +14,6 @@ tag App
             return
         @todos.push Model.new(@newTodoTitle)
         @newTodoTitle = ''
-        console.log @todos
         persist
 
     # remove todo
@@ -72,7 +71,7 @@ tag App
                 <input[@newTodoTitle] placeholder="Add...">
                 <button type='submit'> 'Add item'
 
-            <input.toggle-all type='checkbox' :change.toggleAll checked=(active.len == 0)>
+            <input.toggle-all type='checkbox' :change.toggleAll checked=(active.len is 0)>
             <div> for todo in items
                 # todo with custum events remove and renamed
                 <Todo todo=todo :remove.removeTodo(todo) :changed.persist>
