@@ -1,6 +1,11 @@
 module.exports = {
+  entry: './src/App.imba',
   resolve: {
     extensions: ['.imba']
+  },
+  output: {
+    path: __dirname,
+    filename: "dist/app.js"
   },
   module: {
     rules: [
