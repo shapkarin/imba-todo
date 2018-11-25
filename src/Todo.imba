@@ -13,9 +13,6 @@ export tag Todo
     def setTitle
         @todo.title = @newTitle
         @editing = no
-    
-    # def remove todo
-    #     up('_App').removeTodo(todo)
 
     def render
         <self>
