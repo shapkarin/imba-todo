@@ -4,6 +4,7 @@ export tag Todo
 
     def toggleTodo
         @todo.completed = !@todo.completed
+        trigger('changed')
 
     def editing
         @newTitle = @todo.title
@@ -12,7 +13,7 @@ export tag Todo
     def setTitle
         @todo.title = @newTitle
         @editing = no
-        trigger('renamed')
+        trigger('changed')
 
     def render
         <self>

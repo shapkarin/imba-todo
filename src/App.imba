@@ -69,7 +69,7 @@ tag App
 
             <div> for todo in items
                 # todo with custum events remove and renamed
-                <Todo todo=todo :remove.removeTodo(todo) :renamed.persist>
+                <Todo todo=todo :remove.removeTodo(todo) :changed.persist>
                 ###
                     you also can pass function like a property
                     func=(self:parentFuncName.bind(this))
