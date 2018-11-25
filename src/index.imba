@@ -13,23 +13,23 @@ tag App
     def removeTodo todo
         @todos = @todos.filter(|t| t != todo)
 
-    def remaining
-        @todos.filter(|todo| !todo.completed )
-
     def completed
         @todos.filter(|todo| todo.completed )
+
+    def remaining
+        @todos.filter(|todo| !todo.completed )
 
     def hash
         window:location:hash
 
     def render
         var items = @todos
-        var active = @remaining
-        var done = @completed
+        var active = remaining
+        var done = completed
 
-        if @hash is '#/completed'
+        if hash is '#/completed'
             items = done
-        elif @hash is '#/active'
+        elif hash is '#/active'
             items = active
 
         <self>
@@ -42,14 +42,16 @@ tag App
 
             <footer.footer>
                 <span.todo-count>
-                    <strong> "{active:len} "
-                    active:length == 1 ? 'item left' : 'items left'
+                    <strong> "{active.len} "
+                    active.len == 1 ? 'item' : 'items'
+                    ' left'
                 <ul.filters>
-                    <li> <a  href='#/'> 'All'
-                    <li> <a  href='#/active'> 'Active'
-                    <li> <a  href='#/completed'> 'Completed'
+                    <li> <a .selected=(items is todos) href='#/'> 'All'
+                    <li> <a .selected=(items is active) href='#/active'> 'Active'
+                    <li> <a .selected=(items is done) href='#/completed'> 'Completed'
 
                 if done:len > 0
                     <button.clear-completed :tap='archive'> 'Clear completed'
 
+    
 Imba.mount <App todos=[]>
