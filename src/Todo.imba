@@ -1,27 +1,30 @@
-export tag Todo
+import controller from './Controller'
+
+export tag Todo < li
     prop todo
 
-    def toggleTodo
-        @todo.completed = !@todo.completed
-        trigger('changed')
+    def edit
+        flag('editing')
+        @input.value = todo.title
+        setTimeout(&,10) do @input.focus
 
-    def editing
-        @newTitle = @todo.title
-        @editing = yes
+    def cancel
+        unflag('editing')
+        @input.blur
 
     def setTitle
-        @todo.title = @newTitle
-        @editing = no
-        trigger('changed')
+        unflag('editing')
+        let title = @input.value.trim
+        if title != todo.title
+            controller.rename(todo,title)
+    
+    def onfocusout e
+        setTitle if hasFlag('editing')
 
     def render
-        <self>
-            if @editing
-                <input[@newTitle] :keydown.enter.setTitle>
-            <span .done=(@todo.completed)> @todo.title
-            <button :tap.toggleTodo> !@todo.completed ? 'Completed' : 'ToDo'
-            if !@editing
-                <button :tap.editing> 'Rename'
-            else
-                <button :tap.setTitle> 'Save'
-            <button :tap.trigger('remove')> 'Remove'
+        <self .completed=(todo.completed) .editing=(@editing)>
+            <div.view>
+                <input .toggle :tap=(do controller.toggle(todo)) type='checkbox' checked=todo.completed>
+                <label :dblclick.edit> todo.title
+                <button.destroy :tap=(do controller.remove(todo))>
+            <input@input.edit :keydown.enter.setTitle :keydown.esc.cancel>

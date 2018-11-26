@@ -1,20 +1,24 @@
 {
+  "private": true,
   "name": "imba-todo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "imba todo app",
   "main": "index.js",
   "scripts": {
     "build": "npx webpack"
   },
+  "author": "Yury Shapkarin",
+  "license": "MIT",
   "engines": {
     "npm": "^5.2.0"
   },
-  "author": "Yury Shapkarin",
-  "license": "MIT",
+  "dependencies": {
+    "todomvc-app-css": "^2.0.0",
+    "todomvc-common": "^1.0.1"
+  },
   "devDependencies": {
     "imba": "^1.4.0",
     "webpack": "^4.26.0",
     "webpack-cli": "^3.1.2"
   }
 }
-

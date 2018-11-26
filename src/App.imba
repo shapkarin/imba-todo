@@ -1,65 +1,13 @@
-import { Model } from './Store'
+import controller from './Controller'
 import { Todo } from './Todo'
 
 tag App
-    prop todos
-    prop newTodoTitle
         
-    def build
-        load
-
-    # add todo
-    def addTodo
-        if @newTodoTitle is undefined or @newTodoTitle is ''
-            return
-        @todos.push Model.new(@newTodoTitle)
-        @newTodoTitle = ''
-        persist
-
-    # remove todo
-    def removeTodo todo
-        @todos = @todos.filter(|t| t != todo)
-        persist
-
-    def toggleAll e
-        for todo in @todos
-            todo.completed = e.target.checked
-        persist
-
-    # get completed todos
-    def completed
-        @todos.filter(|todo| todo.completed )
-
-    # get not completed todos
-    def remaining
-        @todos.filter(|todo| !todo.completed )
-    
-    # get location hash
-    def hash
-        window:location:hash
-
-    # remove all completed todos from collection
-    def archive
-        @todos = remaining
-        persist
-
-    # load todos from localstorage
-    def load
-        var items = JSON.parse(window:localStorage.getItem('todos-imba') or '[]')
-        @todos = items.map do |todo| Model.new(todo:_title, todo:_completed)
-        console.log @todos
-
-    # persist todos to localstorage
-    def persist
-        var json = JSON.stringify(todos)
-        if json != @json
-            window:localStorage.setItem('todos-imba', @json = json)
-
-    # render
     def render
-        var items = @todos
-        var active = remaining
-        var done = completed
+        var items = controller.store:todos
+        var active = controller.remaining
+        var done = controller.completed
+        var hash = controller.hash
 
         if hash is '#/completed'
             items = done
@@ -67,20 +15,16 @@ tag App
             items = active
 
         <self>
-            <form.header :submit.prevent.addTodo>
-                <input[@newTodoTitle] placeholder="Add...">
-                <button type='submit'> 'Add item'
+            <header.header>
+                <h1> 'todos'
+                <input@input[controller.store:newTodoTitle] .new-todo :keydown.enter=(do controller.addTodo(@input)) placeholder="What needs to be done?" autofocus=true>
 
-            <input.toggle-all type='checkbox' :change.toggleAll checked=(active.len is 0)>
-            <div> for todo in items
-                # todo with custum events remove and renamed
-                <Todo todo=todo :remove.removeTodo(todo) :changed.persist>
-                ###
-                    you also can pass function like a property
-                    func=(self:parentFuncName.bind(this))
-                    and then call it in child
-                    <Todo todo=todo :remove.removeTodo(todo) :renamed.persist>
-                ###
+            <section.main>
+                <input.toggle-all#toggle-all type='checkbox' :change=(do |e| controller.toggleAll(e)) checked=(active.len is 0)>
+                <label for="toggle-all"> 'Mark all as complete'
+            
+            <ul.todo-list> for todo, id in items
+                <Todo todo=todo>
 
             <footer.footer>
                 <span.todo-count>
@@ -88,12 +32,12 @@ tag App
                     active.len == 1 ? 'item' : 'items'
                     ' left'
                 <ul.filters>
-                    <li> <a .selected=(items is todos) href='#/'> 'All'
+                    <li> <a .selected=(items is controller.store:todos) href='#/'> 'All'
                     <li> <a .selected=(items is active) href='#/active'> 'Active'
                     <li> <a .selected=(items is done) href='#/completed'> 'Completed'
 
                 if done.len > 0
-                    <button.clear-completed :tap.archive> 'Clear completed'
+                    <button.clear-completed :tap=(do controller.archive)> 'Clear completed'
 
     
-Imba.mount <App>
+Imba.mount <App.todoapp>
