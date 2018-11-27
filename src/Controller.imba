@@ -14,7 +14,6 @@ class Controller
     def addTodo input
         if store:newTodoTitle
             store:todos.push Model(store:newTodoTitle)
-            store:todos.push Model('store:newTodoTitle')
             input.value = ''
             store:newTodoTitle = ''
             persist

@@ -5,7 +5,7 @@ export tag Todo < li
 
     def edit
         flag('editing')
-        @input.value = todo.title
+        @input.value = todo:title
         setTimeout(&,10) do @input.focus
 
     def cancel
