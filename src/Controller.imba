@@ -64,4 +64,5 @@ class Controller
         if json != @json
             window:localStorage.setItem('todos-imba', @json = json)
 
+# export as a singleton
 module:exports:controller = Controller.new
