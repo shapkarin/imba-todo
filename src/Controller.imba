@@ -12,8 +12,9 @@ class Controller
 
     # add todo
     def addTodo input
-        if store:newTodoTitle
-            store:todos.push Model(store:newTodoTitle)
+        const newTodoTitle = store:newTodoTitle.trim
+        if newTodoTitle
+            store:todos.push Model(newTodoTitle)
             input.value = ''
             store:newTodoTitle = ''
             persist
@@ -55,12 +56,12 @@ class Controller
 
     # load todos from localstorage
     def load
-        var items = JSON.parse(window:localStorage.getItem('todos-imba') or '[]')
+        const items = JSON.parse(window:localStorage.getItem('todos-imba') or '[]')
         store:todos = items.map do |todo| Model(todo:title, todo:completed)
 
     # persist todos to localstorage
     def persist
-        var json = JSON.stringify(store:todos)
+        const json = JSON.stringify(store:todos)
         if json != @json
             window:localStorage.setItem('todos-imba', @json = json)
 
