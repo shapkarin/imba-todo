@@ -4,7 +4,7 @@ import { Todo } from './Todo'
 tag App
         
     def render
-        const items = controller.store:todos
+        let items = controller.store:todos
         const active = controller.remaining
         const done = controller.completed
         const hash = controller.hash
