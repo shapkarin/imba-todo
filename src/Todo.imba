@@ -14,7 +14,7 @@ export tag Todo < li
 
     def setTitle
         unflag('editing')
-        if title = @input.value.trim
+        if let title = @input.value.trim
             controller.rename(todo,title)
     
     def onfocusout e
