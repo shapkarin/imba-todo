@@ -6,8 +6,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.imba$/, // include .js files
-        //exclude: /node_modules/, // exclude any and all files in the node_modules folder
+        test: /\.imba$/,
         use: [
           {
             loader: "imba/loader"
