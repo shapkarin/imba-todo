@@ -5,7 +5,7 @@
   "description": "imba todo app",
   "main": "index.js",
   "scripts": {
-    "build": "npx webpack"
+    "build": "webpack"
   },
   "author": "Yury Shapkarin",
   "license": "MIT",
