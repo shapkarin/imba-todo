@@ -5,15 +5,11 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.imba$/, // include .js files
-        //exclude: /node_modules/, // exclude any and all files in the node_modules folder
-        use: [
-          {
-            loader: "imba/loader"
-          }
-        ]
-      }
+			{
+				test: /\.imba$/,
+				loader: 'imba/loader',
+				options: {es6: true}
+			}
     ]
   }
 };

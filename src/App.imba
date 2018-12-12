@@ -26,8 +26,8 @@ tag App
                     autofocus=true
                 >
 
-            <section.main>
-                if todos.len > 0
+            if todos.len > 0
+                <section.main>
                     <input
                         #toggle-all.toggle-all
                         type='checkbox'
